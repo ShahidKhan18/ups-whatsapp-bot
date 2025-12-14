@@ -1,10 +1,10 @@
-import { Client, LocalAuth } from "whatsapp-web.js";
-import qrcode from "qrcode-terminal";
-import { handleMessage } from "./messageHandler.js";
+const { Client, LocalAuth } = require("whatsapp-web.js");
+const qrcode = require("qrcode-terminal");
+const { handleMessage } = require("./messageHandler");
 
 let client;
 
-export async function initWhatsApp() {
+async function initWhatsApp() {
     client = new Client({
         authStrategy: new LocalAuth(),
         puppeteer: {
@@ -27,6 +27,8 @@ export async function initWhatsApp() {
     await client.initialize();
 }
 
-export function getClient() {
+function getClient() {
     return client;
 }
+
+module.exports = { initWhatsApp, getClient };

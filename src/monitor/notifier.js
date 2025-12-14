@@ -1,3 +1,6 @@
-export async function notify(client, chatId, message) {
+async function notify(client, chatId, message) {
+    if (!client || !chatId) return;
     await client.sendMessage(chatId, message);
 }
+
+module.exports = { notify };

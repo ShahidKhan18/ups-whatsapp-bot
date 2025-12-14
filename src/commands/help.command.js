@@ -1,4 +1,4 @@
-export async function helpCommand(client, msg) {
+async function helpCommand(client, msg) {
     await msg.reply(
         `📘 *UPS WhatsApp Bot Commands*
 
@@ -16,3 +16,5 @@ export async function helpCommand(client, msg) {
 `
     );
 }
+
+module.exports = { helpCommand };

@@ -1,5 +1,5 @@
-import { initWhatsApp } from "./whatsapp/client.js";
-import { startScheduler } from "./monitor/scheduler.js";
+const { initWhatsApp } = require("./whatsapp/client");
+const { startScheduler } = require("./monitor/scheduler");
 
 async function bootstrap() {
     await initWhatsApp();

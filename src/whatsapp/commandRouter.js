@@ -1,9 +1,9 @@
-import { helloCommand } from "../commands/hello.command.js";
-import { helpCommand } from "../commands/help.command.js";
-import { loginCommand } from "../commands/login.command.js";
-import { statusCommand } from "../commands/status.command.js";
+const { helloCommand } = require("../commands/hello.command");
+const { helpCommand } = require("../commands/help.command");
+const { loginCommand } = require("../commands/login.command");
+const { statusCommand } = require("../commands/status.command");
 
-export async function routeCommand(client, msg, text) {
+async function routeCommand(client, msg, text) {
     const [command, ...args] = text.split(/\s+/);
 
     switch (command.toLowerCase()) {
@@ -25,3 +25,5 @@ export async function routeCommand(client, msg, text) {
             );
     }
 }
+
+module.exports = { routeCommand };

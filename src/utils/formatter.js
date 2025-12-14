@@ -1,4 +1,4 @@
-export function formatStatus(ip, data) {
+function formatStatus(ip, data) {
     const mode =
         data.Other.upsSupplyState === "1"
             ? "Bypass"
@@ -22,7 +22,7 @@ export function formatStatus(ip, data) {
 }
 
 
-export function formatVoltageAlert(ip, phase, voltage, type) {
+function formatVoltageAlert(ip, phase, voltage, type) {
     return (
         `⚠️ *Input Voltage ${type}*
 🖥 IP: ${ip}
@@ -31,7 +31,7 @@ export function formatVoltageAlert(ip, phase, voltage, type) {
     );
 }
 
-export function formatModeChange(ip, from, to) {
+function formatModeChange(ip, from, to) {
     return (
         `🔔 *UPS Mode Changed*
 🖥 IP: ${ip}
@@ -40,8 +40,10 @@ export function formatModeChange(ip, from, to) {
 }
 
 
-export function formatLoginStatus(ip, success) {
+function formatLoginStatus(ip, success) {
     return success
         ? `✅ Logged in to UPS ${ip}`
         : `❌ Login failed for UPS ${ip}`;
 }
+
+module.exports = { formatStatus, formatVoltageAlert, formatModeChange, formatLoginStatus };

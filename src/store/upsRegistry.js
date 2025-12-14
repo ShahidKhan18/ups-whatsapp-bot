@@ -1,9 +1,11 @@
 const upsSet = new Set();
 
-export function registerUPS(ip) {
+function registerUPS(ip) {
     upsSet.add(ip);
 }
 
-export function getAllUPS() {
+function getAllUPS() {
     return [...upsSet];
 }
+
+module.exports = { registerUPS, getAllUPS };

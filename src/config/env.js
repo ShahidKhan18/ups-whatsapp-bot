@@ -1,4 +1,4 @@
-export const ENV = {
+const ENV = {
     NODE_ENV: process.env.NODE_ENV || "development",
 
     // Polling interval (seconds)
@@ -7,3 +7,5 @@ export const ENV = {
     // HTTP timeout (ms)
     HTTP_TIMEOUT: Number(process.env.HTTP_TIMEOUT || 5000),
 };
+
+module.exports = { ENV };

@@ -1,6 +1,6 @@
-import { routeCommand } from "./commandRouter.js";
+const { routeCommand } = require("./commandRouter");
 
-export async function handleMessage(client, msg) {
+async function handleMessage(client, msg) {
     if (!msg.body) return;
 
     const text = msg.body.trim();
@@ -8,3 +8,5 @@ export async function handleMessage(client, msg) {
 
     await routeCommand(client, msg, text);
 }
+
+module.exports = { handleMessage };

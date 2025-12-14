@@ -1,9 +1,9 @@
-import axios from "axios";
-import { wrapper } from "axios-cookiejar-support";
-import { CookieJar } from "tough-cookie";
-import { ENV } from "../config/env.js";
+const axios = require("axios");
+const { wrapper } = require("axios-cookiejar-support");
+const { CookieJar } = require("tough-cookie");
+const { ENV } = require("../config/env");
 
-export function createHttpClient(baseURL, cookieJar) {
+function createHttpClient(baseURL, cookieJar) {
     const jar = cookieJar || new CookieJar();
 
     const client = wrapper(
@@ -19,3 +19,5 @@ export function createHttpClient(baseURL, cookieJar) {
 
     return { client, jar };
 }
+
+module.exports = { createHttpClient };

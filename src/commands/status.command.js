@@ -1,10 +1,20 @@
-export async function statusCommand(client, msg, args) {
+const { fetchUPSStatus } = require("../ups/status.service");
+const { formatStatus } = require("../utils/formatter");
+const { DEFAULTS } = require("../config/defaults");
+
+async function statusCommand(client, msg, args) {
     const [ip] = args;
 
     if (!ip) {
         return msg.reply("❌ Usage: status <ip>");
     }
 
-    // TODO: call UPS status service
-    await msg.reply(`📊 Fetching UPS status for ${ip}`);
+    const data = await fetchUPSStatus(ip, {
+        user: DEFAULTS.UPS.USERNAME,
+        password: DEFAULTS.UPS.PASSWORD,
+    });
+
+    await msg.reply(formatStatus(ip, data));
 }
+
+module.exports = { statusCommand };

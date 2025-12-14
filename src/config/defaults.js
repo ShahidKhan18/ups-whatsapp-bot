@@ -1,4 +1,4 @@
-export const DEFAULTS = {
+const DEFAULTS = {
     UPS: {
         USERNAME: "user",
         PASSWORD: "111111",
@@ -14,3 +14,5 @@ export const DEFAULTS = {
         MAX_LN: 260,
     },
 };
+
+module.exports = { DEFAULTS };
