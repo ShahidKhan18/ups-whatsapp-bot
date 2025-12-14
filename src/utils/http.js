@@ -20,4 +20,24 @@ function createHttpClient(baseURL, cookieJar) {
     return { client, jar };
 }
 
-module.exports = { createHttpClient };
+async function pingUPS(ip, protocol = "http") {
+    try {
+        const response = await axios.get(`${protocol}://${ip}`, {
+            timeout: 3000, // 3 second timeout for ping
+            validateStatus: () => true, // Accept any status code
+        });
+        return { success: true };
+    } catch (error) {
+        // Network error, timeout, or connection refused
+        return {
+            success: false,
+            error: error.code === 'ECONNREFUSED'
+                ? 'Connection refused'
+                : error.code === 'ETIMEDOUT' || error.code === 'ECONNABORTED'
+                    ? 'Connection timeout'
+                    : 'Network error'
+        };
+    }
+}
+
+module.exports = { createHttpClient, pingUPS };

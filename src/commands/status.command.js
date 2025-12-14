@@ -1,8 +1,9 @@
 const { fetchUPSStatus } = require("../ups/status.service");
 const { formatStatus } = require("../utils/formatter");
 const { DEFAULTS } = require("../config/defaults");
+const { catchAsyncError } = require("../utils/catchAsyncError");
 
-async function statusCommand(client, msg, args) {
+const statusCommand = catchAsyncError(async (client, msg, args) => {
     const [ip] = args;
 
     if (!ip) {
@@ -15,6 +16,6 @@ async function statusCommand(client, msg, args) {
     });
 
     await msg.reply(formatStatus(ip, data));
-}
+}, { errorPrefix: "STATUS_COMMAND", notifyWhatsApp: false });
 
 module.exports = { statusCommand };

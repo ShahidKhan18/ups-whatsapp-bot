@@ -1,8 +1,9 @@
 const { getUPSClient } = require("./upsClient");
 const { loginUPS } = require("./login.service");
 const { DEFAULTS } = require("../config/defaults");
+const { catchAsyncError } = require("../utils/catchAsyncError");
 
-async function fetchUPSStatus(ip, creds) {
+const fetchUPSStatus = catchAsyncError(async (ip, creds) => {
     const { client } = getUPSClient(ip);
 
     let res = await client.get("/_com/home/home.json");
@@ -23,6 +24,6 @@ async function fetchUPSStatus(ip, creds) {
     }
 
     return res.data;
-}
+}, { errorPrefix: "STATUS" });
 
 module.exports = { fetchUPSStatus };
