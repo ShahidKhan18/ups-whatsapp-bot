@@ -3,6 +3,10 @@ const DEFAULTS = {
         USERNAME: "user",
         PASSWORD: "111111",
         PROTOCOL: "http",
+        IPS: [
+            "10.0.190.201",
+            "10.0.190.202",
+        ],
     },
 
     LOGIN: {

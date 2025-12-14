@@ -1,11 +1,11 @@
-const upsSet = new Set();
+import { DEFAULTS } from "../config/defaults.js";
 
-function registerUPS(ip) {
+const upsSet = new Set(DEFAULTS.UPS.IPS);
+
+export function registerUPS(ip) {
     upsSet.add(ip);
 }
 
-function getAllUPS() {
+export function getAllUPS() {
     return [...upsSet];
 }
-
-module.exports = { registerUPS, getAllUPS };
